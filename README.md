@@ -127,6 +127,3 @@ Here is the screen when the user is in the admin role after logging in with an a
 -	Represent shopping revenue through a chart.
 -	The contact between admin and users using chatbot.
 
-# Video demo
-
-Access to this (https://drive.google.com/file/d/10LEg-9Zi3JUrQN0ggkx_7EELY5or9j0O/view?usp=sharing) for our demo
