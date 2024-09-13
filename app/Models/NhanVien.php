@@ -18,6 +18,7 @@ class NhanVien extends Model
         'SDT',
         'DiaChi',
         'ThanhPho',
-        'GioiTinh'
+        'GioiTinh',
+        'google_id',
     ];
 }

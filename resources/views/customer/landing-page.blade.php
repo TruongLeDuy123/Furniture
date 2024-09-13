@@ -25,6 +25,10 @@
         }
     </style>
     <script>
+        let userData = @json(session('DATA'));
+        // console.log("CHECK USER: ", userData);
+        sessionStorage.setItem('token', userData.token)
+        sessionStorage.setItem('email', userData.data.email)
         async function fetchCategoriesData() {
             try {
                 const categoriesRes = await fetch(`api/getproductpicforcategory`);

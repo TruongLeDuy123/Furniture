@@ -17,6 +17,7 @@ class KhachHang extends Model
         'SDT',
         'DiaChi',
         'ThanhPho',
-        'GioiTinh'
+        'GioiTinh',
+        'google_id',
     ];
 }

@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="../css/slider-product.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -168,7 +169,7 @@
 <body class="bg-[#F9F9F9]">
     <x-header />
     @php
-    $successMessage = session('success');
+        $successMessage = session('success');
     @endphp
     <div id="success-message" data-success="{{ $successMessage }}"></div>
     <script>
@@ -188,11 +189,15 @@
         <div class="mt-[50px] lg:mt-[128px] mb-[50px] flex items-center justify-center flex-col gap-y-[40px]">
             <h1 class="text-[26px] lg:text-[64px] font-bold">Thanh toán</h1>
             <div class="flex items-center justify-center w-full flex-col gap-y-[20px]">
-                <div class="w-full flex items-center justify-center w-full flex-col p-5 lg:px-[46px] lg:py-[18px] border border-[rgba(21,20,17,0.7)] lg:gap-y-5">
+                <div
+                    class="w-full flex items-center justify-center w-full flex-col p-5 lg:px-[46px] lg:py-[18px] border border-[rgba(21,20,17,0.7)] lg:gap-y-5">
                     <span class="w-full flex items-center justify-center gap-x-2 lg:gap-x-0 text-[#FFB23F] font-medium">
                         <div class="w-[24px] lg:w-[70px]">
-                            <svg width="28" height="37" viewBox="0 0 28 37" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15.7281 36.075C19.4688 31.4355 28 20.191 28 13.875C28 6.21484 21.7292 0 14 0C6.27083 0 0 6.21484 0 13.875C0 20.191 8.53125 31.4355 12.2719 36.075C13.1687 37.1807 14.8312 37.1807 15.7281 36.075ZM14 18.5C11.426 18.5 9.33333 16.426 9.33333 13.875C9.33333 11.324 11.426 9.25 14 9.25C16.574 9.25 18.6667 11.324 18.6667 13.875C18.6667 16.426 16.574 18.5 14 18.5Z" fill="#FFB23F" />
+                            <svg width="28" height="37" viewBox="0 0 28 37" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M15.7281 36.075C19.4688 31.4355 28 20.191 28 13.875C28 6.21484 21.7292 0 14 0C6.27083 0 0 6.21484 0 13.875C0 20.191 8.53125 31.4355 12.2719 36.075C13.1687 37.1807 14.8312 37.1807 15.7281 36.075ZM14 18.5C11.426 18.5 9.33333 16.426 9.33333 13.875C9.33333 11.324 11.426 9.25 14 9.25C16.574 9.25 18.6667 11.324 18.6667 13.875C18.6667 16.426 16.574 18.5 14 18.5Z"
+                                    fill="#FFB23F" />
                             </svg>
                         </div>
                         <p class="w-full text-base lg:text-[30px]">Địa chỉ nhận hàng</p>
@@ -202,14 +207,16 @@
                             <strong id="info" class="leading-normal text-sm lg:text-[25px]"></strong>
                         </p>
                         <p id="address" class="text-sm lg:text-[25px] leading-normal"></p>
-                        <a href="{{ route('profile') }}" class="text-base lg:text-[25px] text-[#518581] cursor-pointer leading-normal">
+                        <a href="{{ route('profile') }}"
+                            class="text-base lg:text-[25px] text-[#518581] cursor-pointer leading-normal">
                             Thay đổi
                         </a>
                     </span>
                 </div>
                 <div class="w-full">
                     <!-- Title -->
-                    <div class="mb-[12px] px-[20px] shadow text-[14px] h-[55px] shadow items-center hidden lg:flex justify-center bg-[#fff]">
+                    <div
+                        class="mb-[12px] px-[20px] shadow text-[14px] h-[55px] shadow items-center hidden lg:flex justify-center bg-[#fff]">
                         <div class="w-[calc(100%-58px)] lg:flex-1">
                             Sản phẩm
                         </div>
@@ -235,7 +242,8 @@
             </div>
         </div>
 
-        <div class="sticky bottom-0 bg-[#fff] border-dotted border-[rgba(0,0,0,.09)] lg:border  lg:py-2 lg:pr-6 lg:pl-[40px] pl-[10px] my-4 flex  items-center justify-between ">
+        <div
+            class="sticky bottom-0 bg-[#fff] border-dotted border-[rgba(0,0,0,.09)] lg:border  lg:py-2 lg:pr-6 lg:pl-[40px] pl-[10px] my-4 flex  items-center justify-between ">
 
             <!-- Thanh toán -->
             <div class="flex  text-[30px] gap-x-2 items-center">
@@ -252,7 +260,8 @@
                     </span>
                 </div>
 
-                <button onclick="Order()" class="ml-2 lg:ml-5 rounded-[2px] text-white border bg-[#ee4d2d] h-[56px]  px-[10px] lg:px-[20px]  text-white text-[15px] lg:text-[24px] font-semibold">
+                <button onclick="Order()"
+                    class="ml-2 lg:ml-5 rounded-[2px] text-white border bg-[#ee4d2d] h-[56px]  px-[10px] lg:px-[20px]  text-white text-[15px] lg:text-[24px] font-semibold">
                     Đặt hàng
                 </button>
 
@@ -261,7 +270,8 @@
 
                 <input type="hidden" id="palpay" name="hello">
                 </a> --}}
-                <form action="{{ route('processTransaction') }}" method="POST" class="ml-2 lg:ml-5 rounded-[2px] text-white border bg-[#ffc107] h-[56px]  px-[10px] lg:px-[20px]  text-white text-[15px] lg:text-[24px] font-semibold">
+                <form action="{{ route('processTransaction') }}" method="POST"
+                    class="ml-2 lg:ml-5 rounded-[2px] text-white border bg-[#ffc107] h-[56px]  px-[10px] lg:px-[20px]  text-white text-[15px] lg:text-[24px] font-semibold">
                     @csrf
                     <input type="hidden" name="customer" value="" id="customer_id">
                     <input type="hidden" name="price" value="" id="paypal">
@@ -387,7 +397,7 @@
                 const cartResponse = await fetch(`/api/cart-detail/makh/${window.id}`);
                 // Xử lý phản hồi từ yêu cầu fetch('/api/products') ở đây
                 const data = await cartResponse.json();
-                
+
                 for (let i = 0; i < data.length; i++) {
                     const cart = data[i];
                     if (carts.includes(cart.id)) {
@@ -402,7 +412,6 @@
                 const proResponse = await fetch(`/api/products/${cart.MaSP}`);
                 const data = await proResponse.json();
                 console.log("CHECK DATA: ", data);
-                return
                 var newCart = {
                     MaSP: parseInt(cart.MaSP),
                     SoLuong: parseInt(cart.SoLuong),
@@ -427,7 +436,7 @@
         async function OrderOnline() {
             console.log("OrderOnline");
             const billId = await insertBillOnline();
-            
+
 
             if (sessionStorage.getItem("beforeHref") == "/cart-information") {
                 var carts = sessionStorage.getItem("paymentList").split(",").map(cart => parseInt(cart));

@@ -32,7 +32,7 @@
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span id="username" class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                <span id="username" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                 <img class="img-profile rounded-circle" src="/Admin/img/undraw_profile.svg" />
             </a>
             <!-- Dropdown - User Information -->
@@ -68,6 +68,9 @@
     </div>
 </nav>
 <script>
+    let userData = @json(session('DATA'));
+    sessionStorage.setItem('token', userData.token)
+    sessionStorage.setItem('email', userData.data.email)
     var username = document.getElementById("username");
     var email = sessionStorage.getItem("email");
     fetch(`/api/staffs/email/${email}`)

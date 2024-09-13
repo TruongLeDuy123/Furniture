@@ -197,7 +197,7 @@
 
                         <strong class="change-login lg:text-xl text-sm cursor-pointer text-[red]"
                             style="margin-left: 5%" id="message"></strong>
-                        <br><br>
+                        <br><br>    
                         <div class="lg:flex items-center">
                             <div class="w-[250px]"></div>
                             <a

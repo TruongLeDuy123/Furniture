@@ -27,6 +27,7 @@
             <img srcset="{{ asset('img/login-bg.png') }}" alt="login-background"
                 class="hidden lg:block object-fill lg:max-w-full  lg:w-full  max-h-[860px] relative" />
             <!-- Đăng nhập -->
+
             <form action="{{ url('/api/login') }}" class="form-login" autocomplete="off" method="POST">
                 <div
                     class="fadeUp lg:absolute lg:top-[25%] top-[20%] lg:right-[80px] right-[45px] lg:w-[618px] lg:min-h-[550px] bg-white bg-opacity-70 rounded-lg flex justify-center flex-col p-[50px] lg:gap-y-[38px] gap-y-[20px]">
@@ -80,12 +81,22 @@
                     </p>
                 </div>
             </form>
+
+            {{-- login with social --}}
+            {{-- <form action="{{ url('/api/auth/google/redirect') }}" class="login_social">
+                <button type="submit">Login with Google</button>
+            </form> --}}
+
+            <button id="googleLogin">Login with Google</button>
+
+
         </div>
     </main>
     <x-footer />
 
 
     <script>
+        
         const changeRegister = document.querySelector(".change-register");
         const changeLogin = document.querySelector(".change-login");
 
@@ -177,74 +188,32 @@
                     .then(response => response.json())
                     .then(data => {
                         console.log("CHECK DATA: ", data);
+                        
                         if (data.message == "Mật khẩu không hợp lệ!") {
                             message_login.innerHTML = "Mật khẩu không hợp lệ!";
-                        }
-                        else if (data.message == "Email không hợp lệ!")
-                        {
+                        } else if (data.message == "Email không hợp lệ!") {
                             message_login.innerHTML = "Email không hợp lệ!";
-                        } 
-                        else {
+                        } else {
                             sessionStorage.setItem("email", data.data.email);
                             sessionStorage.setItem("token", data.token);
                             if (data.data.role == 1) {
                                 window.location.href = "/customer_manager";
                             }
-                            // Xử lý phản hồi từ API (nếu cần)
-                            // console.log(sessionStorage.getItem("email"));
                             else {
-                                
                                 window.location.href = "/";
                             }
                         }
                     });
                 if (sessionStorage.getItem("href") == "null") {
                     window.location.replace("/profile-page");
-                } 
+                }
             })
         })
 
-        // document.querySelector('.form-login').addEventListener("submit", function(event) {
-
-        //     event.preventDefault();
-        //     var email = document.getElementById("emailLogin").value;
-        //     var password = document.getElementById("passwordLogin").value;
-        //     console.log("email: ", email);
-        //     console.log("password: ", password);
-
-        //     var data = {
-        //         email: email,
-        //         password: password,
-        //     };
-
-        //     fetch(`/api/login`, {
-        //             method: "POST",
-        //             headers: {
-        //                 "Content-Type": "application/json"
-        //             },
-        //             body: JSON.stringify(data)
-        //         })
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             sessionStorage.setItem("email", data.email);
-        //             if (data.role == 1) {
-        //                 window.location.href = "/customer_manager";
-        //             }
-        //             // Xử lý phản hồi từ API (nếu cần)
-        //             // console.log(sessionStorage.getItem("email"));
-        //             // else
-        //             // {
-        //             //     window.location.href = "/profile-page";
-        //             // }
-        //         });
-
-        //     if (sessionStorage.getItem("href") == "null") {
-        //         window.location.href = "/profile-page";
-
-        //     } else {
-        //         window.location.href = sessionStorage.getItem("href");
-        //     }
-        // });
+        document.getElementById('googleLogin').addEventListener('click', function() {
+            // Điều hướng tới URL đăng nhập Google trên backend
+            window.location.href = '/auth/google/redirect';
+        });
     </script>
 </body>
 

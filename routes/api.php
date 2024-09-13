@@ -17,8 +17,10 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PusherController;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,7 +99,7 @@ Route::get('/customers/email/{email}', [KhachHangController::class, 'getCustomer
 // -> method apiResource - thêm phương thức insert
 
 // API STAFF
-Route::apiResource('staffs', NhanVienController::class );
+Route::apiResource('staffs', NhanVienController::class);
 Route::get('/staffs/email/{email}', [NhanVienController::class, 'getStaffsByEmail']);
 
 // Route::get('/staff_manager', [NhanVienController::class, 'index']);
@@ -112,8 +114,8 @@ Route::get('/search', [SanPhamController::class, 'searchProducts']);
 Route::put('/payment/{productId}/update-quantity', [ThanhToanController::class, 'updateQuantity']);
 
 // CHANGE PASSWORD
-Route::post('/profile/change-password',[UserController::class,'change_password'])->middleware('auth:sanctum');
-Route::get('/logout',[UserController::class,'logout'])->middleware('auth:sanctum');
+Route::post('/profile/change-password', [UserController::class, 'change_password'])->middleware('auth:sanctum');
+Route::get('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 
 // chatbox
 Route::apiResource('chat', ChatController::class);
@@ -124,3 +126,10 @@ Route::put('/update-chat/{cus_id}', [ChatController::class, 'updateChat']);
 Route::get('/sendmessage', [PusherController::class, 'sendMessage']);
 
 Route::get('/top-products', [CthdController::class, 'getTopProducts']);
+
+// Route::middleware(['web'])->group(function () {
+//     Route::get('/auth/google/redirect', [GoogleAuthController::class, 'redirect']);
+//     Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
+// });
+
+// http://masteringauth.com/auth/google/callback

@@ -10,7 +10,10 @@ use App\Http\Controllers\Admin\KhuyenMaiController;
 use App\Http\Controllers\Admin\HoaDonController;
 use App\Http\Controllers\Admin\KhachHangController;
 use App\Http\Controllers\Admin\PaymentController;
-
+use App\Http\Controllers\GoogleAuthController;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -173,3 +176,6 @@ Route::get('cancel-Transaction', [PaymentController::class, 'cancelTransaction']
 Route::get('/chart_manager', function () {
     return view('admin/admin_charts/index');
 })->name('chart_manager');
+
+Route::get('/auth/google/redirect', [GoogleAuthController::class, 'redirect']);
+Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
