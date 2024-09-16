@@ -33,14 +33,12 @@
             try {
                 const categoriesRes = await fetch(`api/getproductpicforcategory`);
                 const categoriesData = await categoriesRes.json();
-
-
                 if (!categoriesData || !Array.isArray(categoriesData)) {
                     console.error('Invalid or missing data structure in API response');
                     return;
                 }
-
-                console.log(categoriesData);
+                
+                // console.log(categoriesData);
 
                 const categoryContainer = document.getElementById('DanhMucSanPham');
                 categoryContainer.innerHTML = ``;
@@ -74,7 +72,6 @@
             window.location.href = "/product-page";
 
         }
-
 
         function searchEnter(event) {
             if (event.key === 'Enter') {
@@ -550,22 +547,6 @@
         <x-chatbot />
 
     </main>
-    <!-- <footer class="mt-[100px] container  py-[60px] border-t border-t-[#ECE4DE] mb-20">
-        <div class="flex items-center justify-center gap-y-[23px] flex-col">
-            <div class="flex items-center justify-center gap-x-2 cursor-pointer">
-                <img srcset="/assets/img/logo.png 2x" alt="logo" />
-                <span class="font-medium text-[18px]">
-                    BiSys - Yêu ngôi nhà của bạn
-                </span>
-            </div>
-            <div class="flex items-center justify-center gap-x-[41px] cursor-pointer">
-                <img src="/assets/icons/facebook.png" alt="facebook" />
-                <img src="/assets/icons/instagram.png" alt="instagram" />
-                <img src="/assets/icons/twitter.png" alt="twitter" />
-            </div>
-            <span class="font-medium text-2xl">Hãy theo dõi chúng tôi để cập nhật tin mới nhất !</span>
-        </div>
-    </footer> -->
     <x-footer />
 
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

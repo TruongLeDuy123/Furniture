@@ -43,6 +43,7 @@ Route::post('/login', [LoginController::class, 'login']);
 
 // api admin
 // category 
+
 Route::apiResource('categories', DanhMucSpController::class);
 Route::post('/categories/create', [DanhMucSpController::class, 'store']);
 Route::get('/getproductpicforcategory', [DanhMucSpController::class, 'productPicforCategory']);
@@ -93,19 +94,11 @@ Route::apiResource('customers', KhachHangController::class)->except('store', 'de
 Route::get('/customers/getlastpage/{pagesize}', [KhachHangController::class, 'getLastPage']);
 Route::get('/customers/email/{email}', [KhachHangController::class, 'getCustomersByEmail']);
 
-// Route::get('/admin-customer', [KhachHangController::class, 'index']);
-// Route::put('edit_customer/{id}', [KhachHangController::class, 'update']);
-// Route::get('/delete_customer/{id}', [KhachHangController::class, 'destroy']);
-// -> method apiResource - thêm phương thức insert
-
 // API STAFF
+// Route::prefix('customer')->middleware(['auth', 'isAdmin'])->group(function () {
+
 Route::apiResource('staffs', NhanVienController::class);
 Route::get('/staffs/email/{email}', [NhanVienController::class, 'getStaffsByEmail']);
-
-// Route::get('/staff_manager', [NhanVienController::class, 'index']);
-// Route::post('/staff/create', [NhanVienController::class, 'store']);
-// Route::put('/edit_staff/{staff}', [NhanVienController::class, 'update']);
-// Route::get('/delete_staff/{staff}', [NhanVienController::class, 'destroy']);
 
 // SEARCH PRODUCT BY KEYWORD + PRICE
 Route::get('/search', [SanPhamController::class, 'searchProducts']);
@@ -126,10 +119,5 @@ Route::put('/update-chat/{cus_id}', [ChatController::class, 'updateChat']);
 Route::get('/sendmessage', [PusherController::class, 'sendMessage']);
 
 Route::get('/top-products', [CthdController::class, 'getTopProducts']);
-
-// Route::middleware(['web'])->group(function () {
-//     Route::get('/auth/google/redirect', [GoogleAuthController::class, 'redirect']);
-//     Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
 // });
-
 // http://masteringauth.com/auth/google/callback

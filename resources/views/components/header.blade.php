@@ -131,10 +131,9 @@
 
     if (!email || email == "null") {
         let currentUrl = window.location.href;
-        if (currentUrl.includes("/profile-page") || currentUrl.includes("/login-register?email")) {
+        if (currentUrl.includes("/profile-page") || currentUrl.includes("/login-register?email") || currentUrl.includes("/customer_manager")) {
             window.location.replace("/login-register")
         }
-
         linkProfile1.href = "/login-register";
         linkCart1.href = "/login-register";
         linkProfile2.href = "/login-register";
@@ -144,7 +143,6 @@
         if (currentUrl.includes("/login-register")) {
             window.location.href = "/profile-page"
         }
-
         linkProfile1.href = "/profile-page";
         linkCart1.href = "/cart-information";
 
@@ -154,13 +152,13 @@
             .then(response => response.json())
             .then(data => {
                 username1.innerHTML = data.HoTen;
-				
                 username2.innerHTML = data.HoTen;
-                sessionStorage.setItem("id", data.id)   
+                sessionStorage.setItem("id", data.id)
                 sessionStorage.setItem("HoTen", data.HoTen)
                 sessionStorage.setItem("SDT", data.SDT)
                 sessionStorage.setItem("DiaChi", data.DiaChi)
                 sessionStorage.setItem("ThanhPho", data.ThanhPho)
+                sessionStorage.setItem("role", 0)
             });
     }
 
@@ -192,7 +190,6 @@
     document.addEventListener('DOMContentLoaded', async function() {
         if (sessionStorage.getItem("email") != null) {
             await fetchTotalCart();
-
         }
     });
 

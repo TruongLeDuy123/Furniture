@@ -35,16 +35,6 @@ class LoginController extends Controller
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
 
-    // public function login(Request $request)
-    // {
-    //     $credentials = $request->only('email', 'password');
-    //     if (Auth::attempt($credentials)) {
-    //         // Đăng nhập thành công
-    //         return response()->json(Auth::user());
-    //     }
-    //     return response()->json("null");
-    // }
-
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -58,36 +48,30 @@ class LoginController extends Controller
                 'errors' => $validator->errors()
             ]);
         }
-
         $user = User::where('email', $request->email)->first();
-        
         if ($user) {
-
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('auth-token')->plainTextToken;
-                
-                if($user->role == 1) {
-                    $userInfo = NhanVien::where('Email', $request->email)->first();
-                    return response()->json([
-                        'message' => 'Login Successfull',
-                        'token' => $token,
-                        'data' => $user,
-                        'userInfo' => $userInfo
-                    ]);
-                } else {
-                    $userInfo = KhachHang::where('Email', $request->email)->first();
-                    return response()->json([
-                        'message' => 'Login Successfull',
-                        'token' => $token,
-                        'data' => $user,
-                        'userInfo' => $userInfo
-                    ]);
-                }
-                // return response()->json([
-                //     'message' => 'Login Successfull',
-                //     'token' => $token,
-                //     'data' => $user
-                // ]);
+                return response()->json([
+                    'message' => 'Login Successfull',
+                    'token' => $token,
+                    'data' => $user,
+                ]);
+                // if($user->role == 1) {
+                //     $userInfo = NhanVien::where('Email', $request->email)->first();
+                //     return response()->json([
+                //         'message' => 'Login Successfull',
+                //         'token' => $token,
+                //         'data' => $user,
+                //     ]);
+                // } else {
+                //     $userInfo = KhachHang::where('Email', $request->email)->first();
+                //     return response()->json([
+                //         'message' => 'Login Successfull',
+                //         'token' => $token,
+                //         'data' => $user,
+                //     ]);
+                // }
             } else {
                 return response()->json([
                     'message' => 'Mật khẩu không hợp lệ!',

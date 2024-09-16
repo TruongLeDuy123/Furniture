@@ -187,7 +187,7 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        console.log("CHECK DATA: ", data);
+                        // console.log("CHECK DATA: ", data);
                         
                         if (data.message == "Mật khẩu không hợp lệ!") {
                             message_login.innerHTML = "Mật khẩu không hợp lệ!";
