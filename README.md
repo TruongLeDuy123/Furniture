@@ -107,7 +107,8 @@ Here is the screen when the user is in the admin role after logging in with an a
 
 # 4. SUMMARY OF FUNCTIONS IN PROJECT
 ## 4.1. Customer’s Function:
--	Login and Register.
+-	Login by typing email and password or Login by Google
+-  Register by OTP Code, which is sent by Gmail.
 -	Display outstanding information including: product categories, best-selling products.
 -	Displays a list of available store products, including functions such as lookup, filtering, classification, etc...
 -	Display product details, and a list of similar products.
@@ -118,7 +119,7 @@ Here is the screen when the user is in the admin role after logging in with an a
 -	Display user information, function to update user profile, change password, view order information and log out of the system.
 -	The contact between admin and users using chatbot.
 ## 4.2. Admin’s Function:
--	Login.
+-	Login by typing email and password or Login by Google.
 -	Product information management: show, create, detail, edit, delete.
 -	Customer information management:  show, detail.
 -	Staff information management: show, create, detail, edit, delete.

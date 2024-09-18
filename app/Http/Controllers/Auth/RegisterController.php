@@ -78,12 +78,6 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        // $request->validate([
-        //     'HoTen' => 'required|string|max:255',
-        //     'email' => 'required|string|email|max:255|unique:users',
-        //     'password' => 'required|string|min:1|confirmed',
-        // ]);
-
         $customer = KhachHang::create([
             'HoTen' => $request->HoTen,
             'Email' => $request->email,
@@ -97,10 +91,6 @@ class RegisterController extends Controller
         $otp = Str::random(6);
         $user->otp_code = $otp;
         $user->save();
-        // Mail::send('admin.emails.otp', ['otp' => $otp], function($message) use ($user) {
-        //     $message->to($user->email);
-        //     $message->subject("XÁC THỰC BẰNG MÃ OTP");
-        // });
         try {
             Mail::to($user->email)->send(new OtpMail($otp));
             return response()->json([
@@ -118,13 +108,6 @@ class RegisterController extends Controller
 
     public function verifyOtp(Request $request)
     {
-        // try {
-        //     $request->validate([
-        //         'otp_code' => 'required|string|size:6',
-        //     ]);
-        // } catch (\Illuminate\Validation\ValidationException $e) {
-        //     dd($e->errors());
-        // }
         if (!$request->otp_code)
         {
             return response()->json(['message' => "Vui lòng nhập mã OTP!"]);

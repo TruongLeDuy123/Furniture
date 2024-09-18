@@ -251,9 +251,7 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        // window.location.href = "/login-register" // Xử lý phản hồi từ API (nếu cần)
                         $('#otp-form').show()
-                        
                     })
                     .catch(e => {
                         console.log("===> Loi: ", e);
@@ -350,7 +348,6 @@
         })
 
         document.getElementById('googleLogin').addEventListener('click', function() {
-            // Điều hướng tới URL đăng nhập Google trên backend
             window.location.href = '/auth/google/redirect';
         });
     </script>
