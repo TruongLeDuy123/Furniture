@@ -39,6 +39,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // REGISTER + LOGIN
 Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/verify-otp', [RegisterController::class, 'verifyOtp']);
 Route::post('/login', [LoginController::class, 'login']);
 
 // api admin
@@ -119,5 +120,6 @@ Route::put('/update-chat/{cus_id}', [ChatController::class, 'updateChat']);
 Route::get('/sendmessage', [PusherController::class, 'sendMessage']);
 
 Route::get('/top-products', [CthdController::class, 'getTopProducts']);
-// });
+
+
 // http://masteringauth.com/auth/google/callback

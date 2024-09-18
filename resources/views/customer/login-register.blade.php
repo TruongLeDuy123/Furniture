@@ -17,6 +17,111 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+    <style>
+        /* Style cho toàn bộ form */
+        #otp-form {
+            max-width: 400px;
+            margin: 0 auto;
+            /* Căn giữa form */
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            /* Khoảng cách giữa các phần tử */
+        }
+
+        /* Style cho nhãn (label) */
+        #otp-form label {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        /* Style cho ô input */
+        #otp-form input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            /* Đảm bảo chiều rộng luôn đầy đủ */
+            transition: border-color 0.3s ease;
+        }
+
+        #otp-form input[type="text"]:focus {
+            border-color: #007BFF;
+            outline: none;
+            /* Xóa viền mặc định khi focus */
+        }
+
+        /* Style cho nút submit */
+        #otp-form button {
+            padding: 12px 0;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #otp-form button:hover {
+            background-color: #0056b3;
+            /* Màu khi hover */
+        }
+
+        /* Responsive cho màn hình nhỏ */
+        @media (max-width: 600px) {
+            #otp-form {
+                padding: 15px;
+            }
+
+            #otp-form button {
+                padding: 10px 0;
+                font-size: 15px;
+            }
+        }
+
+        /* Thêm hiệu ứng fade-in */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+                /* Di chuyển từ trên xuống */
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                /* Về vị trí ban đầu */
+            }
+        }
+
+        /* Style cho form khi hiện */
+        #otp-form.show {
+            display: block;
+            /* Hiển thị form */
+            animation: fadeIn 0.5s ease-out;
+            /* Áp dụng animation */
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Đảm bảo form ẩn đi ban đầu */
+        #otp-form {
+            display: none;
+            opacity: 0;
+            transform: translateY(-20px);
+            /* Ẩn đi với opacity = 0 */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -81,22 +186,21 @@
                     </p>
                 </div>
             </form>
-
-            {{-- login with social --}}
-            {{-- <form action="{{ url('/api/auth/google/redirect') }}" class="login_social">
-                <button type="submit">Login with Google</button>
-            </form> --}}
-
             <button id="googleLogin">Login with Google</button>
-
-
         </div>
     </main>
     <x-footer />
 
+    <form id="otp-form" style="display:none;">
+        <label for="otp">Nhập mã OTP:</label>
+        <input type="text" id="otp" name="otp" placeholder="Nhập mã OTP"><br>
+        <button type="submit">Xác nhận OTP</button>
+    </form>
 
     <script>
-        
+        // Gọi hàm này khi cần hiển thị form (ví dụ nhấn nút "Gửi OTP")
+        document.getElementById('show-otp-button').addEventListener('click', showOtpForm);
+
         const changeRegister = document.querySelector(".change-register");
         const changeLogin = document.querySelector(".change-login");
 
@@ -104,14 +208,6 @@
             document.querySelector(".form-login").classList.add("hidden");
             document.querySelector(".form-register").classList.remove("hidden");
         });
-
-        //   document.querySelector(".form-login").addEventListener("submit", (e) => {
-        //     e.preventDefault();
-        //     console.log(
-        //       document.querySelector(".form-login").elements["name"].value,
-        //       document.querySelector(".form-login").elements["password"].value
-        //     );
-        //   });
 
         changeLogin.addEventListener("click", () => {
             document.querySelector(".form-register").classList.add("hidden");
@@ -155,12 +251,58 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        window.location.href = "/login-register" // Xử lý phản hồi từ API (nếu cần)
+                        // window.location.href = "/login-register" // Xử lý phản hồi từ API (nếu cần)
+                        $('#otp-form').show()
+                        
                     })
                     .catch(e => {
                         console.log("===> Loi: ", e);
                     })
             }
+
+            $('#otp-form').on('submit', function(e) {
+                e.preventDefault()
+                let otpval = $("#otp").val()
+                let data = {
+                    email,
+                    otp_code: otpval
+                }
+                fetch(`api/verify-otp`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message == "Vui lòng nhập mã OTP!" || data.message ==
+                            'Mã OTP không hợp lệ!') {
+                            Swal.fire({
+                                title: data.message,
+                                icon: "warning",
+                                confirmButtonColor: "#3085d6",
+                                cancelButtonColor: "#d33",
+                                confirmButtonText: "Đồng ý",
+                            })
+                        } else {
+                            Swal.fire({
+                                title: data.message,
+                                icon: "success",
+                                confirmButtonColor: "#3085d6",
+                                cancelButtonColor: "#d33",
+                                confirmButtonText: "Đồng ý",
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = "/login-register";
+                                }
+                            })
+                        }
+                    })
+                    .catch(e => {
+                        console.log("Loi: ", e);
+                    })
+            })
         });
 
         document.querySelector('#cancel').addEventListener("click", function(event) {
@@ -187,8 +329,6 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        // console.log("CHECK DATA: ", data);
-                        
                         if (data.message == "Mật khẩu không hợp lệ!") {
                             message_login.innerHTML = "Mật khẩu không hợp lệ!";
                         } else if (data.message == "Email không hợp lệ!") {
@@ -198,8 +338,7 @@
                             sessionStorage.setItem("token", data.token);
                             if (data.data.role == 1) {
                                 window.location.href = "/customer_manager";
-                            }
-                            else {
+                            } else {
                                 window.location.href = "/";
                             }
                         }

@@ -32,7 +32,6 @@
             .then(data => {
                 document.getElementById("HoTen").value = data.HoTen;
                 document.getElementById("Email").value = data.Email;
-                // document.getElementById("Password").value = data.Password;
                 document.getElementById("SDT").value = data.SDT;
                 document.getElementById("DChi").value = data.DiaChi;
                 document.getElementById("TPho").value = data.ThanhPho;
@@ -90,10 +89,6 @@
                                         <label>Email</label>
                                         <input readonly type="email" id="Email" class="form-control">
                                     </div>
-                                    <!-- <div class=" form-group">
-                                    <label>Password</label>
-                                    <input readonly type="password" id="Password" class="form-control">
-                                    </div> -->
                                     <div class="form-group col-md-4">
                                         <label>Số điện thoại</label>
                                         <input readonly type="number" id="SDT" class="form-control">

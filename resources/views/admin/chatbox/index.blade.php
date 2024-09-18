@@ -161,7 +161,7 @@
 
                         <div class="chat-input">
                             <textarea id="inputMessage" placeholder="Enter a message..." spellcheck="false" required></textarea>
-                            <span id="send-btn" class="material-symbols-rounded">send</span>
+                            <span id="send-btn" class="material-symbols-rounded">Send</span>
                         </div>
                     </div>
                 </div>
@@ -320,7 +320,7 @@
 
         async function seenChatbox(id, tenkh) {
             window.cusId = id;
-            console.log("tenkh: ", tenkh);
+            // console.log("tenkh: ", tenkh);
             document.getElementById("cusName").textContent = tenkh;
             document.body.classList.toggle("show-chatbot");
             const seen = document.getElementById(`seen-${id}`);

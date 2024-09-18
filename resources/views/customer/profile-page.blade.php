@@ -430,28 +430,6 @@
                         $('.myOrder').html(str);
                     });
             })
-            // $('.logOut_btn').click(function() {
-            //     alert("gel")
-            //     fetch(`/api/logout`, {
-            //             // // headers: {
-            //             // //     'Content-Type': 'application/json',
-            //             // //     'Authorization': 'Bearer ' + sessionStorage.getItem(
-            //             // //         'token'
-            //             // //     ), // Include the user's token if you are using token-based authentication
-            //             // },
-            //         })
-            //         .then(response => {
-            //             console.log("CHECK RESPONSE: ", response);
-            //             return response.json()
-            //         })
-
-            //         .then(data => {
-            //             console.log("CHECK LOGOUT: ", data);
-            //         })
-            //         .catch(e => {
-            //             console.log("ERROR: ", e);
-            //         })
-            // })
         })
     </script>
 </body>

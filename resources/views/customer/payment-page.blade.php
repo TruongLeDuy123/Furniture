@@ -385,12 +385,12 @@
 
         }
         async function Order() {
-            console.log("Order");
+            // console.log("Order");
             const billId = await insertBill();
-            console.log("billId: ", billId);
+            // console.log("billId: ", billId);
             // const billId = bill.id;
 
-            console.log("beforeHref", sessionStorage.getItem("beforeHref"));
+            // console.log("beforeHref", sessionStorage.getItem("beforeHref"));
 
             if (sessionStorage.getItem("beforeHref") == "/cart-information") {
                 var carts = sessionStorage.getItem("paymentList").split(",").map(cart => parseInt(cart));
@@ -406,7 +406,6 @@
                         await deleteCart(cart.id);
                     }
                 }
-
             } else {
                 var cart = JSON.parse(sessionStorage.getItem("paymentItem"));
                 const proResponse = await fetch(`/api/products/${cart.MaSP}`);

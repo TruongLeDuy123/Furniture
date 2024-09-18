@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OtpMail;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\KhachHang;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -90,9 +93,49 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        return response()->json([
-            'user' => $user,
-            'customer' => $customer
-        ]);
+
+        $otp = Str::random(6);
+        $user->otp_code = $otp;
+        $user->save();
+        // Mail::send('admin.emails.otp', ['otp' => $otp], function($message) use ($user) {
+        //     $message->to($user->email);
+        //     $message->subject("XÁC THỰC BẰNG MÃ OTP");
+        // });
+        try {
+            Mail::to($user->email)->send(new OtpMail($otp));
+            return response()->json([
+                'message' => 'Đăng ký thành công. Vui lòng kiểm tra email để nhận mã OTP!',
+                'user' => $user,
+                'customer' => $customer
+            ]);
+        }
+        catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Loi: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function verifyOtp(Request $request)
+    {
+        // try {
+        //     $request->validate([
+        //         'otp_code' => 'required|string|size:6',
+        //     ]);
+        // } catch (\Illuminate\Validation\ValidationException $e) {
+        //     dd($e->errors());
+        // }
+        if (!$request->otp_code)
+        {
+            return response()->json(['message' => "Vui lòng nhập mã OTP!"]);
+        }
+        $user = User::where('email', $request->email)->first();
+        if (!$user || $user->otp_code != $request->otp_code)
+        {
+            return response()->json(['message' => 'Mã OTP không hợp lệ!']);
+        }
+        $user->otp_code = null;
+        $user->save();
+        return response()->json(['message' => 'Xác thực OTP thành công']);
     }
 }
