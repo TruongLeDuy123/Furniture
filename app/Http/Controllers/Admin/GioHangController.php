@@ -75,7 +75,7 @@ class GioHangController extends Controller
         $giohang = GioHang::where('MaKh', $makh)->get();
         return $giohang;
     }
-
+    
     public function getCartDetailByCustomerId($makh)
     {
         $giohang = GioHang::where('MaKH', $makh)->get();

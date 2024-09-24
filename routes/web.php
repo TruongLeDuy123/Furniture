@@ -179,3 +179,5 @@ Route::get('/chart_manager', function () {
 
 Route::get('/auth/google/redirect', [GoogleAuthController::class, 'redirect']);
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
+
+// Route::post('/vnpay_payment', [PaymentController:: class, 'vnpay_payment']);

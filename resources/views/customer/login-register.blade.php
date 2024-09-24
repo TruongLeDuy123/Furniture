@@ -186,7 +186,9 @@
                     </p>
                 </div>
             </form>
+
             <button id="googleLogin">Login with Google</button>
+
         </div>
     </main>
     <x-footer />
@@ -198,8 +200,6 @@
     </form>
 
     <script>
-        // Gọi hàm này khi cần hiển thị form (ví dụ nhấn nút "Gửi OTP")
-        document.getElementById('show-otp-button').addEventListener('click', showOtpForm);
 
         const changeRegister = document.querySelector(".change-register");
         const changeLogin = document.querySelector(".change-login");

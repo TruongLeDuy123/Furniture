@@ -57,21 +57,6 @@ class LoginController extends Controller
                     'token' => $token,
                     'data' => $user,
                 ]);
-                // if($user->role == 1) {
-                //     $userInfo = NhanVien::where('Email', $request->email)->first();
-                //     return response()->json([
-                //         'message' => 'Login Successfull',
-                //         'token' => $token,
-                //         'data' => $user,
-                //     ]);
-                // } else {
-                //     $userInfo = KhachHang::where('Email', $request->email)->first();
-                //     return response()->json([
-                //         'message' => 'Login Successfull',
-                //         'token' => $token,
-                //         'data' => $user,
-                //     ]);
-                // }
             } else {
                 return response()->json([
                     'message' => 'Mật khẩu không hợp lệ!',

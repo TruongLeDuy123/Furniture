@@ -52,18 +52,6 @@ class NhanVienController extends Controller
             'user' => $user,
             'staff' => $staff
         ]);
-        // NhanVien::create([
-        //     'HoTen' => $request->HoTen,
-        //     'Email' => $request->email,
-        //     'Password' => $request->password,
-        //     'SDT' => $request->sdt,
-        //     'DiaChi' => $request->DChi,
-        //     'ThanhPho' => $request->TPho,
-        //     'NgayTao' => $todayDate,
-        //     'GioiTinh' => $request->GTinh,
-        // ]);
-
-        // return redirect('/staff_manager')->with('message', 'Tạo thông tin nhân viên thành công');
     }
 
     public function update(Request $request, $id)

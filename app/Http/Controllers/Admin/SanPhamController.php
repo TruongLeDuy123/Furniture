@@ -118,10 +118,6 @@ class SanPhamController extends Controller
         if ($minPrice !== null && $maxPrice !== null) {
             $query->whereBetween('Gia', [$minPrice, $maxPrice]);
         }
-
-        // if($thieu !==null){
-        //     $query->where('ThuongHieu', '=',  $thieu);
-        // }
         $tHieuArray = explode(',', $thieu);
         if ($thieu !== null) {
             $query->whereIn('ThuongHieu', $tHieuArray);
@@ -137,7 +133,7 @@ class SanPhamController extends Controller
     {
         $product = SanPham::findOrFail($id);
         if ($product->TongSL >= $num) {
-            $product->TongSL = $product->TongSL - $num;
+            $product->TongSL -= $num;
             $product->update(['TongSL', $product->TongSL]);
         }
         return $product;

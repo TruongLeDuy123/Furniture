@@ -265,11 +265,6 @@
                     Đặt hàng
                 </button>
 
-                {{-- <a class="ml-2 lg:ml-5 rounded-[2px] text-white border bg-[#ee4d2d] h-[56px]  px-[10px] lg:px-[20px]  text-white text-[15px] lg:text-[24px] font-semibold"
-                    href="{{ route('processTransaction') }}">Pay By PalPay
-
-                <input type="hidden" id="palpay" name="hello">
-                </a> --}}
                 <form action="{{ route('processTransaction') }}" method="POST"
                     class="ml-2 lg:ml-5 rounded-[2px] text-white border bg-[#ffc107] h-[56px]  px-[10px] lg:px-[20px]  text-white text-[15px] lg:text-[24px] font-semibold">
                     @csrf
@@ -277,6 +272,11 @@
                     <input type="hidden" name="price" value="" id="paypal">
                     <button type="submit" style="margin-top: 5px">Thanh toán PayPal</button>
                 </form>
+
+                {{-- <form action="{{ url('/vnpay_payment') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="primary-btn checkout-btn" style="width: 100%">Thanh toán bằng VNPAY</button>
+                </form> --}}
             </div>
         </div>
     </main>
@@ -366,7 +366,7 @@
                 DonGia: cart.Gia,
             };
 
-            console.log("newData: ", newData);
+            // console.log("newData: ", newData);
 
             fetch("/api/bill-details", {
                     method: "POST",
@@ -410,13 +410,11 @@
                 var cart = JSON.parse(sessionStorage.getItem("paymentItem"));
                 const proResponse = await fetch(`/api/products/${cart.MaSP}`);
                 const data = await proResponse.json();
-                console.log("CHECK DATA: ", data);
                 var newCart = {
                     MaSP: parseInt(cart.MaSP),
                     SoLuong: parseInt(cart.SoLuong),
                     Gia: data.Gia,
                 }
-                console.log("newCart: ", newCart);
                 await insertBillDetail(billId, newCart);
                 await updateProduct(cart.MaSP, cart.SoLuong);
                 Swal.fire({
@@ -435,8 +433,6 @@
         async function OrderOnline() {
             console.log("OrderOnline");
             const billId = await insertBillOnline();
-
-
             if (sessionStorage.getItem("beforeHref") == "/cart-information") {
                 var carts = sessionStorage.getItem("paymentList").split(",").map(cart => parseInt(cart));
                 const cartResponse = await fetch(`/api/cart-detail/makh/${window.id}`);
@@ -454,13 +450,11 @@
                 var cart = JSON.parse(sessionStorage.getItem("paymentItem"));
                 const proResponse = await fetch(`/api/products/${cart.MaSP}`);
                 const data = await proResponse.json();
-                console.log(data);
                 var newCart = {
                     MaSP: parseInt(cart.MaSP),
                     SoLuong: parseInt(cart.SoLuong),
                     Gia: data.Gia,
                 }
-                console.log("new data order: ", newCart);
                 await insertBillDetail(billId, newCart);
                 await updateProduct(cart.MaSP, cart.SoLuong);
             }

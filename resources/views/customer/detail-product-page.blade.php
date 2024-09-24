@@ -281,9 +281,17 @@
     });
 
     minus.addEventListener("click", () => {
-      if (a > 2) {
+      if (a >= 2) {
         a--;
         num.textContent = a;
+      }
+      else
+      {
+        Swal.fire({
+          title: "Tối thiểu 1 sản phẩm",
+          text: "Số lượng hiện có: " + window.TongSL,
+          icon: "warning"
+        })
       }
     });
 
@@ -299,7 +307,6 @@
         MaKH: sessionStorage.getItem("id"),
         SoLuong: sl
       };
-      // console.log("newData: ", newData)
       await fetch("/api/insert-cart", {
           method: "POST",
           headers: {
@@ -333,10 +340,8 @@
         MaSP: sessionStorage.getItem('productId'),
         SoLuong: sl
       }
-      // console.log("paymentItem", paymentItem);
       sessionStorage.setItem("paymentItem", JSON.stringify(paymentItem));
       sessionStorage.setItem("beforeHref", "/detail-product-page");
-      // console.log("paymentItem ss", sessionStorage.getItem("paymentItem"));
       window.location.href = "/payment-page";
     }
 
