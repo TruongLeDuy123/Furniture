@@ -149,8 +149,14 @@
                         class="bg-[#FFB23F] text-white rounded-lg shadow lg:h-[60px] h-[50px] lg:w-[516px] w-full p-[14px] font-bold lg:text-2xl text-sm hover:bg-opacity-60">
                         Đăng nhập
                     </button>
+                    <p class="change_forgot_password lg:text-xl text-sm cursor-pointer text-right">
+                        <strong>Quên mật khẩu?</strong>
+                    </p>
                     <p class="change-register lg:text-xl text-sm cursor-pointer text-right">
                         Nếu chưa có tài khoản, nhấn <strong>Đăng ký</strong>
+                    </p>
+                    <p id="googleLogin" class="lg:text-xl text-sm cursor-pointer text-right">
+                        <strong>Đăng nhập bằng Google</strong>
                     </p>
                 </div>
             </form>
@@ -186,33 +192,114 @@
                     </p>
                 </div>
             </form>
+            
+            {{-- Nhap OTP register --}}
+            <form action="" class="otp-form-register hidden" autocomplete="off">
+                <div
+                    class="fadeUp lg:absolute lg:top-[25%] top-[20%] lg:right-[80px] right-[45px] lg:w-[618px] lg:min-h-[550px] bg-white bg-opacity-70 rounded-lg flex justify-center flex-col p-[50px] lg:gap-y-[38px] gap-y-[20px]">
+                    <span class="lg:text-[44px] text-xl font-bold text-[#FFB23F]">Nhập mã OTP</span>
+                    <input id="otp-register" type="text" name="name" required placeholder="Nhập mã OTP"
+                        class="bg-white rounded-lg shadow lg:h-[60px] h-[50px] lg:w-[516px] w-full p-[14px] font-bold lg:text-2xl text-sm" />
 
-            <button id="googleLogin">Login with Google</button>
+                    <div class="flex items-center justify-end gap-x-[23px]">
+                        <button type="submit"
+                            class="bg-[#FFB23F] text-white rounded-lg shadow lg:h-[60px] h-[50px] w-[180px] p-[14px] font-bold lg:text-2xl text-sm hover:bg-opacity-60">
+                            Xác nhận
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            {{-- Quen mat khau --}}
+            <form action="" class="form-forgot-password hidden" autocomplete="off">
+                <div
+                    class="fadeUp lg:absolute lg:top-[25%] top-[20%] lg:right-[80px] right-[45px] lg:w-[618px] lg:min-h-[550px] bg-white bg-opacity-70 rounded-lg flex justify-center flex-col p-[50px] lg:gap-y-[38px] gap-y-[20px]">
+                    <span class="lg:text-[44px] text-xl font-bold text-[#FFB23F]">Quên mật khẩu</span>
+                    <input id="email_forgot" type="text" name="name" required placeholder="Nhập email"
+                        class="bg-white rounded-lg shadow lg:h-[60px] h-[50px] lg:w-[516px] w-full p-[14px] font-bold lg:text-2xl text-sm" />
+
+                    <div class="flex items-center justify-end gap-x-[23px]">
+                        <button type="submit"
+                            class="bg-[#FFB23F] text-white rounded-lg shadow lg:h-[60px] h-[50px] w-[180px] p-[14px] font-bold lg:text-2xl text-sm hover:bg-opacity-60">
+                            Tìm kiếm
+                        </button>
+                        <button id="cancel"
+                            class="change-login1 bg-white text-[#AFADB5] rounded-lg shadow lg:h-[60px] h-[50px] w-[180px] p-[14px] font-bold lg:text-2xl text-sm hover:bg-opacity-60"
+                            type="button">
+                            Hủy
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            {{-- Nhap OTP quen pw --}}
+            <form action="" class="otp-form1 hidden" autocomplete="off">
+                <div
+                    class="fadeUp lg:absolute lg:top-[25%] top-[20%] lg:right-[80px] right-[45px] lg:w-[618px] lg:min-h-[550px] bg-white bg-opacity-70 rounded-lg flex justify-center flex-col p-[50px] lg:gap-y-[38px] gap-y-[20px]">
+                    <span class="lg:text-[44px] text-xl font-bold text-[#FFB23F]">Nhập mã OTP</span>
+                    <input id="otp" type="text" name="name" required placeholder="Nhập mã OTP"
+                        class="bg-white rounded-lg shadow lg:h-[60px] h-[50px] lg:w-[516px] w-full p-[14px] font-bold lg:text-2xl text-sm" />
+
+                    <div class="flex items-center justify-end gap-x-[23px]">
+                        <button type="submit"
+                            class="bg-[#FFB23F] text-white rounded-lg shadow lg:h-[60px] h-[50px] w-[180px] p-[14px] font-bold lg:text-2xl text-sm hover:bg-opacity-60">
+                            Xác nhận
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            {{-- Change pw --}}
+            <form action="" class="reset-pw hidden" autocomplete="off">
+                <div
+                    class="fadeUp lg:absolute lg:top-[25%] top-[20%] lg:right-[80px] right-[45px] lg:w-[618px] lg:min-h-[550px] bg-white bg-opacity-70 rounded-lg flex justify-center flex-col p-[50px] lg:gap-y-[38px] gap-y-[20px]">
+                    <span class="lg:text-[44px] text-xl font-bold text-[#FFB23F]">Thay đổi mật khẩu</span>
+                    <input id="newPw" type="text" name="name" required placeholder="Nhập mật khẩu mới"
+                        class="bg-white rounded-lg shadow lg:h-[60px] h-[50px] lg:w-[516px] w-full p-[14px] font-bold lg:text-2xl text-sm" />
+                    <input id="confirmPw" type="text" name="name" required placeholder="Xác nhận mật khẩu mới"
+                        class="bg-white rounded-lg shadow lg:h-[60px] h-[50px] lg:w-[516px] w-full p-[14px] font-bold lg:text-2xl text-sm" />
+                    <div class="flex items-center justify-end gap-x-[23px]">
+                        <button type="submit"
+                            class="bg-[#FFB23F] text-white rounded-lg shadow lg:h-[60px] h-[50px] w-[180px] p-[14px] font-bold lg:text-2xl text-sm hover:bg-opacity-60">
+                            Xác nhận
+                        </button>
+                    </div>
+                </div>
+            </form>
 
         </div>
     </main>
     <x-footer />
 
-    <form id="otp-form" style="display:none;">
-        <label for="otp">Nhập mã OTP:</label>
-        <input type="text" id="otp" name="otp" placeholder="Nhập mã OTP"><br>
-        <button type="submit">Xác nhận OTP</button>
-    </form>
-
     <script>
-
         const changeRegister = document.querySelector(".change-register");
         const changeLogin = document.querySelector(".change-login");
+        const change_forgot_password = document.querySelector(".change_forgot_password");
+        const changeLogin1 = document.querySelector(".change-login1")
 
         changeRegister.addEventListener("click", () => {
             document.querySelector(".form-login").classList.add("hidden");
             document.querySelector(".form-register").classList.remove("hidden");
+            document.querySelector(".form-forgot-password").classList.add("hidden")
         });
 
         changeLogin.addEventListener("click", () => {
             document.querySelector(".form-register").classList.add("hidden");
             document.querySelector(".form-login").classList.remove("hidden");
+            document.querySelector(".form-forgot-password").classList.add("hidden")
         });
+
+        changeLogin1.addEventListener("click", () => {
+            document.querySelector(".form-register").classList.add("hidden");
+            document.querySelector(".form-login").classList.remove("hidden");
+            document.querySelector(".form-forgot-password").classList.add("hidden")
+        });
+
+        change_forgot_password.addEventListener("click", () => {
+            document.querySelector(".form-forgot-password").classList.remove("hidden")
+            document.querySelector(".form-login").classList.add("hidden")
+            document.querySelector(".form-register").classList.add("hidden")
+        })
 
         var message = document.querySelector("#message");
         var message_login = document.querySelector("#message_login");
@@ -226,6 +313,44 @@
         document.querySelector('#passwordLogin').addEventListener("click", function(event) {
             message_login.innerHTML = "";
         })
+
+        document.querySelector(".form-forgot-password").addEventListener("submit", function(e) {
+            e.preventDefault()
+            // show otp form
+            $('.form-forgot-password').hide()
+            $('.otp-form1').show()
+            let email = document.getElementById("email_forgot").value
+            let data = {
+                email
+            }
+            fetch(`/api/forgot-password`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message == "Người dùng không tồn tại") {
+                        Swal.fire({
+                            title: data.message,
+                            icon: "warning",
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Đồng ý",
+                        })
+                        window.location.href = "/login-register"
+                    }
+                    // show form change pw after click xac nhan  
+                    else $("otp-form1").show()
+                    // $('.reset-pw').show()          
+                })
+                .catch(e => {
+                    console.log("CHECK ERROR: ", e);
+                })
+        })
+
         document.querySelector('.form-register').addEventListener("submit", function(event) {
             event.preventDefault();
             var HoTen = document.getElementById("HoTen").value;
@@ -251,16 +376,30 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        $('#otp-form').show()
+                        if (data.message == 'Email này đã tồn tại')
+                        {
+                            Swal.fire({
+                                title: data.message,
+                                icon: "warning",
+                                confirmButtonColor: "#3085d6",
+                                cancelButtonColor: "#d33",
+                                confirmButtonText: "Đồng ý",
+                            })
+                        }
+                        else
+                        {
+                            $('.otp-form-register').show()
+                            $('.form-register').hide()
+                        }
                     })
                     .catch(e => {
                         console.log("===> Loi: ", e);
                     })
             }
 
-            $('#otp-form').on('submit', function(e) {
+            $('.otp-form-register').on('submit', function(e) {
                 e.preventDefault()
-                let otpval = $("#otp").val()
+                let otpval = $("#otp-register").val()
                 let data = {
                     email,
                     otp_code: otpval
@@ -275,7 +414,7 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.message == "Vui lòng nhập mã OTP!" || data.message ==
-                            'Mã OTP không hợp lệ!') {
+                            'Mã OTP không hợp lệ!' || data.message == 'Người dùng không tồn tại') {
                             Swal.fire({
                                 title: data.message,
                                 icon: "warning",
@@ -303,9 +442,98 @@
             })
         });
 
+        $('.otp-form1').on('submit', function(e) {
+            e.preventDefault()
+            let otp_val = $('#otp').val()
+            let email = $("#email_forgot").val()
+            let data = {
+                otp_val,
+                email
+            }
+            fetch(`api/verify-otp-password`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message == "Vui lòng nhập mã OTP!" || data.message ==
+                        'Mã OTP không hợp lệ!') {
+                        Swal.fire({
+                            title: data.message,
+                            icon: "warning",
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Đồng ý",
+                        })
+                    } else {
+                        Swal.fire({
+                            title: data.message,
+                            icon: "success",
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Đồng ý",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $(".reset-pw").show()
+                                $(".otp-form1").hide()
+                            }
+                        })
+                    }
+                })
+        })
+
+        $(".reset-pw").on('submit', function(e) {
+            e.preventDefault()
+            let newPw = $('#newPw').val()
+            let confirmPw = $("#confirmPw").val()
+            let email = $("#email_forgot").val()
+
+            let data = {
+                newPw,
+                confirmPw,
+                email
+            }
+            fetch(`api/reset-password`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.message == "Mật khẩu không trùng nhau" || data.message == 'Người dùng không tồn tại!') 
+                    {
+                        Swal.fire({
+                            title: data.message,
+                            icon: "warning",
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Đồng ý",
+                        })
+                    } 
+                    else 
+                    {
+                        Swal.fire({
+                            title: data.message,
+                            icon: "success",
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Đồng ý",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "/login-register";
+                            }
+                        })
+                    }
+                })
+        })
+
         document.querySelector('#cancel').addEventListener("click", function(event) {
-            document.querySelector(".form-register").classList.add("hidden");
-            document.querySelector(".form-login").classList.remove("hidden");
+            window.location.href = "/login-register"
         })
 
         $(document).ready(function() {

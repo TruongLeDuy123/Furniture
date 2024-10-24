@@ -64,7 +64,7 @@ class ChatController extends Controller
         $chats = Chat::where("cus_id", $cus_id)->get();
         foreach ($chats as $chat) {
             $chat->update([
-                "seen" => true,
+                "seen" => true
             ]);
         }
         return $chats;

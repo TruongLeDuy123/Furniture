@@ -6,6 +6,6 @@
 <body>
     <p>Xin chào bạn</p>
     <p>Mã OTP của bạn là: <strong>{{ $otp }}</strong></p>
-    <p>Vui lòng nhập mã OTP để hoàn tất quá trình đăng ký</p>
+    <p>Vui lòng nhập mã OTP để hoàn tất quá trình</p>
 </body>
 </html>

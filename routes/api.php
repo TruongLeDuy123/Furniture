@@ -14,9 +14,11 @@ use App\Http\Controllers\Admin\KhachHangController;
 use App\Http\Controllers\Admin\NhanVienController;
 use App\Http\Controllers\Admin\ThanhToanController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ForgotPasswordController as ControllersForgotPasswordController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PusherController;
@@ -40,8 +42,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // REGISTER + LOGIN
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/verify-otp', [RegisterController::class, 'verifyOtp']);
+Route::post('/verify-otp-password', [ForgotPasswordController::class, 'verifyOtp']);
 Route::post('/login', [LoginController::class, 'login']);
-
+Route::post('/forgot-password', [ForgotPasswordController:: class, 'forgot_password']);
+Route::post('/reset-password', [ForgotPasswordController::class, 'reset_password']);
 // api admin
 // category 
 
@@ -111,7 +115,7 @@ Route::put('/payment/{productId}/update-quantity', [ThanhToanController::class, 
 Route::post('/profile/change-password', [UserController::class, 'change_password'])->middleware('auth:sanctum');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 
-// chatbox
+// chatbot
 Route::apiResource('chat', ChatController::class);
 Route::get('/chat/cus-id/{id}', [ChatController::class, 'getChatsByCustomerId']);
 Route::get('/chatlist', [ChatController::class, 'getCustomerChat']);
@@ -121,5 +125,3 @@ Route::get('/sendmessage', [PusherController::class, 'sendMessage']);
 
 Route::get('/top-products', [CthdController::class, 'getTopProducts']);
 
-
-// http://masteringauth.com/auth/google/callback

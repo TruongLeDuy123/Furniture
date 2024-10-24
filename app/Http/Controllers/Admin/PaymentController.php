@@ -28,7 +28,7 @@ class PaymentController extends Controller
                 [
                     "amount" => [
                         "currency_code" => "USD",
-                        "value" => $request['price']
+                        "value" => $request['price'],
                     ]
                 ]
             ]

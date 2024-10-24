@@ -78,6 +78,11 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        $user = User::where('email', $request->email)->first();
+        if ($user)
+        {
+            return response()->json(['message' => 'Email này đã tồn tại']);
+        }
         $customer = KhachHang::create([
             'HoTen' => $request->HoTen,
             'Email' => $request->email,
@@ -113,7 +118,11 @@ class RegisterController extends Controller
             return response()->json(['message' => "Vui lòng nhập mã OTP!"]);
         }
         $user = User::where('email', $request->email)->first();
-        if (!$user || $user->otp_code != $request->otp_code)
+        if (!$user)
+        {
+            return response()->json(['message' => 'Người dùng không tồn tại']);
+        }
+        if ($user->otp_code != $request->otp_code)
         {
             return response()->json(['message' => 'Mã OTP không hợp lệ!']);
         }

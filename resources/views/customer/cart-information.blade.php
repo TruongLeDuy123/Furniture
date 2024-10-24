@@ -178,57 +178,6 @@
                     </div>
                 </div>
                 <div id="cart-item"></div>
-                <!-- Nội dung giỏ hàng -->
-                <!-- <div class="cart-info md:shadow">
-          <div class="border-b md:px-[20px] border-[rgba(0,0,0,0.09)] md:py-[15px] pt-[15px]  text-[14px] min-h-[55px] items-center flex  bg-[#fff] flex-wrap">
-            <div class="min-w-[58px] flex items-center justify-center">
-              <input name="wannaBuy" class="w-[20px] h-[20px]" type="checkbox">
-            </div>
-            <div class="w-[calc(100%-58px)] lg:w-[calc(50%-58px)]">
-              <a href="" class="flex">
-                <div class="aspect-square min-w-[80px] max-h-[80px] rounded-[3px] ">
-                  <img class="object-cover h-full" srcset="{{ asset('img/product3.png') }}" alt="Đèn bàn học HY2266 Bóng LED Chống Cận Bảo Vệ Mắt">
-                </div>
-                <div class="ml-3 flex justify-between px-2 lg:px-0 flex-col gap-y-[3px] ">
-                  <span class="lg:text-[14px] md:max-w-[250px] line-clamp-2">Đèn bàn học HY2266 Bóng
-                    LED
-                    Chống Cận Bảo Vệ Mắt</span>
-                  <span class="lg:text-[14px] ">Phân loại:
-                    <span class="lg:text-[14px] ">Đèn ngủ</span>
-                  </span>
-                  <div class="color-orange md:hidden font-semibold ">
-                    <span class="amount">200000</span>đ
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="hidden text-center lg:flex items-center justify-center color-orange font-semibold w-[12.5%]">
-              <span class="rate">200000</span>đ
-            </div>
-
-            <div class="text-center lg:w-[12.5%] pl-[158px] pr-[30px]  md:px-[45px] flex justify-center text-[16px] my-[7px]">
-
-              <a class="flex minus-btn justify-center items-center border border-r-0 border-[rgba(0,0,0,0.09)] aspect-square w-[32px] h-[32px]">
-                -
-              </a>
-              <input value=1 class="num text-center w-[45px] border border-[rgba(0,0,0,0.09)]" type="number" min="0" id="Quantity">
-              <a class="plus-btn  flex justify-center items-center border-l-0 border border-[rgba(0,0,0,0.09)] aspect-square w-[32px] h-[32px]">
-                +
-              </a>
-
-
-            </div>
-            <div class="hidden text-center lg:flex items-center justify-center color-orange font-semibold w-[12.5%]">
-              <span class="amount">200000</span>đ
-            </div>
-            <a href="" class="p-4 text-center  lg:w-[12.5%]">
-              Xóa
-            </a>
-          </div>
-
-        </div> -->
-
-
             </div>
             <div
                 class="sticky bottom-0 bg-[#fff] border-dotted border-[rgba(0,0,0,.09)] lg:border  lg:py-2 lg:pr-6 lg:pl-[40px] pl-[10px] my-4 flex  items-center justify-between ">
@@ -369,7 +318,7 @@
             const cartResponse = await fetch(`/api/carts/makh/${cusId}`);
             // Xử lý phản hồi từ yêu cầu fetch('/api/products') ở đây
             const data = await cartResponse.json();
-            console.log("cartResponse: ", data);
+            // console.log("cartResponse: ", data);
 
             data.forEach(async function(cart) {
                 var SoLuong = document.getElementById(`quantity-${cart.id}`).value;
